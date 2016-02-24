@@ -51,7 +51,9 @@ ExaML_info.T11\tLikelihood of best tree:\t-82925447.6
 
 Write a program that processess these data to create a dictionary that maps the ExaML run name (e.g. ExaML_info.T6 as the `key`) to the ExaML log-likelihood value (e.g. -82924194.67 as the `value`). Use this function or a function that calls this function to prettily print the run name followed by the log-likelihood value in two column format to the screen like so:
 
+```
 ExaML_info.T6   -82924194.67
 ExaML_info.T5   -82924194.71
+```
 
 Also write a function that sorts the log-likelihood values and helps us determine which run name maximizes the -log likelihood value (e.g. the run name having the value closest to zero). Also output the name of this "best" run to the screen.
