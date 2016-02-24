@@ -26,6 +26,7 @@ Using [Counter](https://docs.python.org/2/library/collections.html#collections.C
 
 Here are the same data from ExaML that you've seen before, although they are a little cleaner this time:
 
+```
 ExaML_info.T6\tLikelihood of best tree:\t-82924194.67
 ExaML_info.T5\tLikelihood of best tree:\t-82924194.71
 ExaML_info.T9\tLikelihood of best tree:\t-82924194.73
@@ -46,6 +47,7 @@ ExaML_info.T17\tLikelihood of best tree:\t-82924707.69
 ExaML_info.T10\tLikelihood of best tree:\t-82925366.65
 ExaML_info.T18\tLikelihood of best tree:\t-82925393.89
 ExaML_info.T11\tLikelihood of best tree:\t-82925447.6
+```
 
 Write a program that processess these data to create a dictionary that maps the ExaML run name (e.g. ExaML_info.T6 as the `key`) to the ExaML log-likelihood value (e.g. -82924194.67 as the `value`). Use this function or a function that calls this function to prettily print the run name followed by the log-likelihood value in two column format to the screen like so:
 
