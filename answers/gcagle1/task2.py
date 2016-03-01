@@ -51,7 +51,7 @@ def remove_punct(text=stars):
 def histogram2():
     count = Counter(remove_punct())
     for val, freq in count.most_common(10):
-        print(val, freq)
+        print(val, freq, sep='\t')
 
 
 def main():

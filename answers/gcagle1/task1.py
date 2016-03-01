@@ -66,7 +66,7 @@ def sort_dict(dictionary):
     index = 0
     for key in sorted(sd, key=sd.get, reverse=True):
         if index <= 10:
-            print(key, dictionary[key])
+            print(key, dictionary[key], sep='\t')
             index += 1
         else:
             return
