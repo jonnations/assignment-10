@@ -10,6 +10,11 @@ Copyright 2016 Michael W Henson. All rights reserved.
 
 
 def word_count(string):
+	'''
+	http://stackoverflow.com/questions/28725503/count-word-frequency-in-a-txt-file-using-only-dictionary-python-3
+	http://stackoverflow.com/questions/16557900/how-to-convert-string-to-dictionary-and-count-the-number-of-each-word
+	http://programminghistorian.org/lessons/counting-frequencies
+	'''
 	my_words = string.lower().replace('  ', ' ').replace(',', '').replace(".", "").split(" ")
 	my_dict = {}
 	for item in my_words:
