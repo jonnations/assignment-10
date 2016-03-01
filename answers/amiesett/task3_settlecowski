@@ -1,0 +1,78 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+"""
+BIOL7800 Assignment 10 Task 3
+
+Amie Settlecowski
+1 Mar. 2016
+
+This program imports a file with information about ExaML runs and creates a
+dictionary that maps the log likelihoods to their runs, prints these pairs to
+screen and identifies and print the 'Best run' to screen.
+"""
+from collections import OrderedDict
+from operator import itemgetter
+
+
+def construct_treeLL_dict(ifile):
+    '''
+    constructs dictionary by iterating over ExaML info file line by line and
+    with identifying ExaML runs as keys and mapping their log likelihoods
+    as values
+    '''
+    treeLL_dict = {}
+    for line in ifile:
+        line = make_columns(line)
+        treeLL_dict[line[0]] = float(line[2])
+    return treeLL_dict
+
+
+def make_columns(line):
+    '''
+    converts tab delimited lines into tab-delimited lists
+    '''
+    line = line.rstrip()
+    line = line.split('\\t')
+    return line
+
+
+def print_dict(LL_dict):
+    '''
+    prints dictionary tab-delimited columns of keys and values
+    '''
+    for key, value in LL_dict.items():
+        print(key, '\t', value)
+
+
+def sort_dict(LL_dict):
+    '''
+    sorts dictionary by value and stores as a new ordered dictionary and
+    identifies and print key, value pair associated with max value
+    '''
+    sorted_LL_dict = OrderedDict(sorted(LL_dict.items(),
+                                        key=itemgetter(1),
+                                        reverse=True))
+    max_LL = max(LL_dict.items(), key=itemgetter(1))
+    print("Best run: ", max_LL[0])
+
+
+def main():
+
+    # check that task1.txt opens in read mode w/out error
+    with open("task3.txt", 'r') as ifile:
+        if ifile.readable() == 'False':
+            ifile.close()
+        else:
+            pass
+
+        # construct dictionary of ExaML run: log likelihood
+        treeLL_dict = construct_treeLL_dict(ifile)
+        print_dict(treeLL_dict)
+        # assign new sorted OrderedDict to dictionary variable
+        treeLL_dict = sort_dict(treeLL_dict)
+
+        ifile.close()
+
+if __name__ == '__main__':
+    main()

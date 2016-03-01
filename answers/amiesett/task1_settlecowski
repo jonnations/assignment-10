@@ -1,0 +1,105 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+"""
+BIOL7800 Assignment 10 Task 1
+
+Amie Settlecowski
+1 Mar. 2016
+
+This program identifies the 10 most common words and the number of occurrences
+from text read in from a file and prints the word and their counts in
+descending order
+"""
+from operator import itemgetter
+
+
+def process_string(string):
+    '''
+    Change every character to lowercase and retain only alphabetic characters
+    '''
+    string = string.lower()
+    string = string.replace("\n", " ")
+    new_string = ''
+    for character in string:
+        if character.isalpha() or character == ' ':
+            new_string += character
+        else:
+            pass
+    return new_string
+
+
+def count_words(string_list):
+    '''
+    Generates 2 lists:
+    words with each word
+    word_count with the count of each word in the corresponding index
+    '''
+    words = []
+    for string in string_list:
+        if string not in words:
+            words.append(string)
+        else:
+            pass
+    word_count = []
+    for word in words:
+        count = string_list.count(word)
+        word_count.append(count)
+    return words, word_count
+
+
+def construct_word_dict(word_list, count_list):
+    '''
+    Generates dictionary of 10 most common words from list of words (word_list)
+    and their corresponding counts (count_list)
+    '''
+    lower_limit = sorted(count_list)[-10]
+    word_dict = {}
+    index = 0
+    for count in count_list:
+        if count >= lower_limit:
+            word_dict[word_list[index]] = count
+        else:
+            pass
+        index += 1
+    return word_dict
+
+
+def print_word_rank(word_dict):
+    '''
+    Creates descending list from word_dict to print words and their counts in
+    descending order
+    '''
+    word_count_list = []
+    for key, value in word_dict.items():
+        word_count_list.append([key, value])
+    word_count_list = sorted(word_count_list, key=itemgetter(1))[::-1]
+    for pair in word_count_list:
+        print(pair[0], '\t ', pair[1])
+
+
+def main():
+
+    # check that task1.txt opens in read mode w/out error
+    with open("task1.txt", 'r') as ifile:
+        if ifile.readable() == 'False':
+            ifile.close()
+        else:
+            pass
+
+        # read in task_1.txt as one long string
+        file_as_string = ifile.read()
+        file_as_string = process_string(file_as_string)
+        # transform long string into list of every word as separate string
+        every_word = file_as_string.split(' ')
+        # count occurrences of each word
+        words, word_count = count_words(every_word)
+        # construct dictionary of 10 most common words
+        word_dict = construct_word_dict(words, word_count)
+        # print key value pair of word_dict in descending order
+        print_word_rank(word_dict)
+
+        ifile.close()
+
+if __name__ == '__main__':
+    main()
